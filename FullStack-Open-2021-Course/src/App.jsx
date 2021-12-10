@@ -1,31 +1,38 @@
 import { useState } from 'react'
-import logo from './logo.svg'
+import logo         from './logo.svg'
 import './App.css'
+import Header       from './Components/Header'
+import Content      from './Components/Content'
+import Footer       from './Components/Footer'
 
-function App () {
-  
-  console.log('Initialized phos')
-  const now = new Date()
-  console.log(now)
-  const a = 10
-  const b = 20
-  console.log(`The total is ${a + b}`)
+const App = () => {
+
+  const course     = 'Half Stack application development'
+  const part1      = 'Fundamentals of React'
+  const exercises1 = 10
+  const part2      = 'Using props to pass data'
+  const exercises2 = 7
+  const part3      = 'State of a component'
+  const exercises3 = 14
 
   return (
     <div>
-      <p>
-        Phosphophyllite, it is now {now.toDateString()} 
-      </p>
-      <p>
-        {a} plus {b} is equal to {a + b}
-        
-      </p>
+      <Header course = {course} />
+      <Content part1      = {part1}
+               part2      = {part2}
+               part3      = {part3}
+               exercises1 = {exercises1}
+               exercises2 = {exercises2}
+               exercises3 = {exercises3} />
+      <Footer exercises1 = {exercises1}
+              exercises2 = {exercises2}
+              exercises3 = {exercises3} />
     </div>
-
   )
 }
 
 export default App
+
 
 
 //------------------Codigo Base de la aplicacion----------------------------
@@ -67,6 +74,56 @@ export default App
 //         </p>
 //       </header>
 //     </div>
+//   )
+// }
+
+// export default App
+
+
+
+//------------------Aplicación de prueba------------------------
+// const Hello = (props) => {
+//   console.log(`${props.name} added with Home component`)
+//   return(
+//     <div>
+//       <p>Hello, {props.name}, your age is {props.age} old </p>
+//     </div>
+//   )
+// }
+
+// const Footer = () => {
+//   console.log('footer initialized')
+//   return(
+//     <div>
+//       Greetings, App created by <a href='https://github.com/HrHrM'>Johnny Bohorquez</a>
+//     </div>
+//   )
+// }
+
+// const App = () => {
+  
+//   console.log('Initialized phos')
+//   const now = new Date()
+//   console.log(now)
+//   const a = 10
+//   const b = 20
+//   console.log(`The total is ${a + b}`)
+//   const name = 'Antarc'
+//   const age  = 40
+
+//   return (
+//     <>
+//       <p>
+//         Phosphophyllite, it is now {now.toDateString()} 
+//       </p>
+//       <p>
+//         {a} plus {b} is equal to {a + b}
+//       </p>
+//       <Hello name = 'Shinsha'  age = {26 + 10} />
+//       <Hello name = {name}     age = {age} />
+//       <Footer />
+//     </>
+
 //   )
 // }
 
