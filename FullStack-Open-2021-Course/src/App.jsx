@@ -1,42 +1,34 @@
 import React, { useState } from 'react'
 import logo                from './logo.svg'
 import './App.css'
-import Title               from './Components/Title'
 import Button              from './Components/Button'
-import Statistics          from './Components/Statistics'
 
-const App = () => {
+
+const App = ({ anecdotes }) => {
+
+  const [ selected, setSelected ] = useState(0)
+  const [ votes, setVotes ]       = useState(0)
+  console.log(anecdotes[selected])
+
+  const handleRandom = () => {
+    setSelected(Math.floor(Math.random()*anecdotes.length))
+    console.log(anecdotes[selected])
+  }
+  const handleVote = () => {
+    setVotes(votes)
+  }
+
   
-  const [ good, setGood ]       = useState(0)
-  const [ neutral, setNeutral ] = useState(0)
-  const [ bad, setBad ]         = useState(0)
-
-  const handleGood = () => {  
-    setGood(good + 1)
-  }
-  const handleNeutral = () => {
-    setNeutral(neutral + 1)
-  }
-  const handleBad = () => {
-    setBad(bad + 1)
-  }
-
-  return (
-    <>
+  return(
+    <div>
       <div>
-        <Title title = {'Give Feedback'} />
+        <h2> {anecdotes[selected]} </h2>
       </div>
       <div>
-        <Button handler = {handleGood}    text = {'Good'} />
-        <Button handler = {handleNeutral} text = {'Neutral'} />
-        <Button handler = {handleBad}     text = {'Bad'} />
+        <Button text = {'Next anecdote'} handler = {handleRandom} />
       </div>
-      <div>
-        <Title title = {'Statistics'} />
-      </div>
-      <Statistics good = {good} bad = {bad} neutral = {neutral} />
-    </>
-    
+      
+    </div>
   )
 }
 
