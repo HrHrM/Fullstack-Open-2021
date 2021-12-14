@@ -1,14 +1,14 @@
 import React from "react"
 
-const Part = ({ part }) => {
+const Part = ({ name, exercises }) => {
 
     console.log('Initialized "Part" component inside Content')
-    console.log(part)
+    console.log(name, exercises)
 
     return(
         <>
             <p>
-                {part.name} {part.exercises}
+                {name}: {exercises}
             </p>
         </>
     )

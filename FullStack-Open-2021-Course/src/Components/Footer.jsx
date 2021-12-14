@@ -2,18 +2,16 @@ import React from "react"
 
 const Footer = ({ parts }) => {
 
-    let sum
     console.log('Initialized footer')
     console.log(parts)
-    const mapped = parts.map(e => { 
-        sum = sum + e.exercises
-        return sum 
-    })
-    console.log(sum)
+    const total = parts[0].exercises + parts[1].exercises + parts[2].exercises 
     
+
     return(
         <>
-            <h2>Number of exercises {sum}</h2>
+            <h2> 
+               number of exercises: {total}
+            </h2>
         </>
     )
 }
