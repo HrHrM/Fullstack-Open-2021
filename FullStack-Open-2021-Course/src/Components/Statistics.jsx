@@ -26,4 +26,7 @@ const Statistics = ({good, bad, neutral}) => {
         <> {ifVote()} </>
     )
 }
+
+
+
 export default Statistics
