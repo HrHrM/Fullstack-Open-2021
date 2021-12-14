@@ -4,7 +4,8 @@ const Footer = ({ parts }) => {
 
     console.log('Initialized footer')
     console.log(parts)
-    const total = parts[0].exercises + parts[1].exercises + parts[2].exercises 
+    const total = parts[0].exercises + parts[1].exercises + parts[2].exercises
+    console.log('The sum of the exercises in the footer is', total) 
     
 
     return(
