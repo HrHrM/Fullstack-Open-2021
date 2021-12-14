@@ -1,42 +1,48 @@
-import { useState } from 'react'
-import logo         from './logo.svg'
+import React, { useState } from 'react'
+import logo                from './logo.svg'
 import './App.css'
-import Header       from './Components/Header'
-import Content      from './Components/Content'
-import Footer       from './Components/Footer'
+import Title               from './Components/Title'
+import Button              from './Components/Button'
+import Statistics          from './Components/Statistics'
 
 const App = () => {
+  
+  const [ good, setGood ]       = useState(0)
+  const [ neutral, setNeutral ] = useState(0)
+  const [ bad, setBad ]         = useState(0)
 
-  const course = {
-    name: 'Half Stack application development',
-    parts: [
-      {
-        name: 'Fundamentals of React',
-        exercises: 10
-      },
-      {
-        name: 'Using props to pass data',
-        exercises: 7
-      },
-      {
-        name: 'State of a component',
-        exercises: 14
-      }
-    ]
+  const handleGood = () => {  
+    setGood(good + 1)
   }
-
+  const handleNeutral = () => {
+    setNeutral(neutral + 1)
+  }
+  const handleBad = () => {
+    setBad(bad + 1)
+  }
 
   return (
     <div>
-      <Header course = {course.name} />
-      <Content parts = {course.parts} />
-      <Footer parts = {course.parts} /> 
+      <div>
+        <Title title = {'Give Feedback'} />
+      </div>
+      <div>
+        <Button handler = {handleGood}    text = {'Good'} />
+        <Button handler = {handleNeutral} text = {'Neutral'} />
+        <Button handler = {handleBad}     text = {'Bad'} />
+      </div>
+      <div>
+        <Title title = {'Statistics'} />
+      </div>
+      <div>
+        <Statistics good = {good} bad = {bad} neutral = {neutral} />
+      </div>
     </div>
+    
   )
 }
 
 export default App
-
 
 
 //------------------Codigo Base de la aplicacion----------------------------
@@ -132,3 +138,64 @@ export default App
 // }
 
 // export default App
+
+//------------------------Ejemplos de hooks---------------------------------------
+// const App = () => {
+
+//   const [ left, setLeft ]     = useState(0)
+//   const [ right, setRight ]   = useState(0)
+//   const [ allClicks, setAll ] = useState([])
+
+//   const handleLeft  = () => { 
+//     setLeft(left + 1) 
+//     setAll(allClicks.concat('L'))
+//   }
+//   const handleRight = () => { 
+//     setRight(right + 1) 
+//     setAll(allClicks.concat('R'))
+//   }
+//   const handleZero  = () => { 
+//       setLeft(0)
+//       setRight(0)
+//       setAll([])
+//   }
+
+//   return (
+//     <div>
+//       {left}
+//       <Button handler = {handleLeft}  text = {'Left'} />
+//       <Button handler = {handleZero}  text = {'Zero'} />
+//       <Button handler = {handleRight} text = {'Right'} />
+//       {right}
+//       <History allClicks = {allClicks} />
+//     </div>
+
+//   )
+// }
+
+// export default App
+
+// const History = ({ allClicks }) => {
+//   if (allClicks.length === 0) {
+//     return(
+//       <div>
+//         the App is used by pressing buttons
+//       </div>
+//     )
+//   }
+//   return (
+//     <div>
+//       Button press history: {allClicks.join(' ')}
+//     </div>
+//   )
+// }
+
+// const Button = ({ handler, text }) => {
+//   return(
+//   <button onClick={handler}>
+//     {text}
+//   </button>
+//   )
+  
+// }
+
