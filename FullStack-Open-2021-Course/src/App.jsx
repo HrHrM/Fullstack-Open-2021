@@ -22,7 +22,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <>
       <div>
         <Title title = {'Give Feedback'} />
       </div>
@@ -34,10 +34,8 @@ const App = () => {
       <div>
         <Title title = {'Statistics'} />
       </div>
-      <div>
-        <Statistics good = {good} bad = {bad} neutral = {neutral} />
-      </div>
-    </div>
+      <Statistics good = {good} bad = {bad} neutral = {neutral} />
+    </>
     
   )
 }
