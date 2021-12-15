@@ -7,9 +7,9 @@ const Course = ({ course }) => {
 
     return(
         <>
-            <Header name = {course.name} />
-            <Content parts = {course.parts} />
-            <Footer  parts = {course.parts} />
+            <Header  name      = { course.name } />
+            <Content parts     = { course.parts } />
+            <Footer  exercises = { course.parts.map( e => e['exercises'] )  } />
         </>
     )
 

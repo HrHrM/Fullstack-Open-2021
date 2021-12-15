@@ -1,9 +1,11 @@
 import React from "react"
 
-const Footer = ({ parts }) => {
+const Footer = ({ exercises }) => {
 
     console.log('Initialized footer')
-    const total = parts[0].exercises + parts[1].exercises + parts[2].exercises
+    const total = exercises.reduce((s, p) => s + p )
+
+    // const total = parts[0].exercises + parts[1].exercises + parts[2].exercises
     console.log('The sum of the exercises in the footer is', total) 
     
 

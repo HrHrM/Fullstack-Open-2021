@@ -5,12 +5,16 @@ const Content = ({parts}) => {
 
     console.log('Initialized Content')
     console.log(parts)
+    
+    const mapped = parts.map(e => {
+        return(
+            <Part key = {e.name} name = {e.name} exercises = {e.exercises}  />
+        )
+    })
 
     return(
         <>
-            <Part name = {parts[0].name} key = {parts.name} exercises = {parts[0].exercises} />
-            <Part name = {parts[1].name} key = {parts.name} exercises = {parts[1].exercises} />
-            <Part name = {parts[2].name} key = {parts.name} exercises = {parts[2].exercises} />
+            {mapped}
         </>
     )
 }
