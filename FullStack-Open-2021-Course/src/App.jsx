@@ -2,32 +2,38 @@ import React, { useState } from 'react'
 import logo                from './logo.svg'
 import './App.css'
 import Button              from './Components/Button'
+import Anecdote            from './Components/Anecdote'
 
 
 const App = ({ anecdotes }) => {
 
   const [ selected, setSelected ] = useState(0)
-  const [ votes, setVotes ]       = useState(0)
-  console.log(anecdotes[selected])
+  const [ votes, setVotes ]       = useState(Array(anecdotes.length).fill(0))
+
+  const votes_copy = [...votes]
+  votes_copy[selected] += 1
+  const indexOfMax = votes.indexOf(Math.max(...votes))
 
   const handleRandom = () => {
-    setSelected(Math.floor(Math.random()*anecdotes.length))
     console.log(anecdotes[selected])
+    return(
+      setSelected( Math.floor(Math.random()* anecdotes.length)  )      
+    )
   }
-  const handleVote = () => {
-    setVotes(votes)
+  const handleVotes = () => {
+    setVotes(votes_copy)
   }
 
-  
   return(
     <div>
+      <Anecdote name = {'Anecdote of the day'} anecdote={anecdotes[selected]} vote = {votes[selected]} />
+
       <div>
-        <h2> {anecdotes[selected]} </h2>
-      </div>
-      <div>
+        <Button text = {'vote'} handler = {handleVotes} />
         <Button text = {'Next anecdote'} handler = {handleRandom} />
       </div>
-      
+    
+      <Anecdote name = {'The most voted anecdote is'} anecdote={anecdotes[indexOfMax]} vote = {votes[indexOfMax]} />
     </div>
   )
 }
