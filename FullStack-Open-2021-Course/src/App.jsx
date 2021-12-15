@@ -1,197 +1,98 @@
-import React, { useState } from 'react'
-import logo                from './logo.svg'
+import { useState } from 'react'
+import logo         from './logo.svg'
 import './App.css'
-import Button              from './Components/Button'
-import Anecdote            from './Components/Anecdote'
+import Course       from './Components/Course'
 
 
-const App = ({ anecdotes }) => {
+const App = () => {
 
-  const [ selected, setSelected ] = useState(0)
-  const [ votes, setVotes ]       = useState(Array(anecdotes.length).fill(0))
-
-  const votes_copy = [...votes]
-  votes_copy[selected] += 1
-  const indexOfMax = votes.indexOf(Math.max(...votes))
-
-  const handleRandom = () => {
-    console.log(anecdotes[selected])
-    return(
-      setSelected( Math.floor(Math.random()* anecdotes.length)  )      
-    )
+  const course = {
+    id: 1,
+    name: 'Half Stack application development',
+    parts: [
+      {
+        name:      'Fundamentals of React',
+        exercises: 10,
+        id:        1,
+      },
+      {
+        name:      'Using props to pass data',
+        exercises: 7,
+        id:        2,
+      },
+      {
+        name:      'State of a component',
+        exercises: 14,
+        id:        3,
+      },
+    ],
   }
-  const handleVotes = () => {
-    setVotes(votes_copy)
-  }
 
-  return(
+  return (
     <div>
-      <Anecdote name = {'Anecdote of the day'} anecdote={anecdotes[selected]} vote = {votes[selected]} />
-
-      <div>
-        <Button text = {'vote'} handler = {handleVotes} />
-        <Button text = {'Next anecdote'} handler = {handleRandom} />
-      </div>
-    
-      <Anecdote name = {'The most voted anecdote is'} anecdote={anecdotes[indexOfMax]} vote = {votes[indexOfMax]} />
+      <Course course = {course} />
     </div>
   )
 }
 
 export default App
 
+//----------------------App base Parte 2----------------------
+// const App = () => {
 
-//------------------Codigo Base de la aplicacion----------------------------
+//   const course = {
+//     name: 'Half Stack application development',
+//     parts: [
+//       {
+//         name: 'Fundamentals of React',
+//         exercises: 10
+//       },
+//       {
+//         name: 'Using props to pass data',
+//         exercises: 7
+//       },
+//       {
+//         name: 'State of a component',
+//         exercises: 14
+//       }
+//     ]
+//   }
 
-// function App() {
-//   const [count, setCount] = useState(0)
 
 //   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>Hello Vite + React!</p>
-//         <p>
-//           <button type="button" onClick={() => setCount((count) => count + 1)}>
-//             count is: {count}
-//           </button>
-//         </p>
-//         <p>
-//           Edit <code>App.jsx</code> and save to test HMR updates.
-//         </p>
-//         <p>
-//           <a
-//             className="App-link"
-//             href="https://reactjs.org"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             Learn React
-//           </a>
-//           {' | '}
-//           <a
-//             className="App-link"
-//             href="https://vitejs.dev/guide/features.html"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             Vite Docs
-//           </a>
-//         </p>
-//       </header>
+//     <div>
+//       <Header course = {course.name} />
+//       <Content parts = {course.parts} />
+//       <Footer parts = {course.parts} /> 
 //     </div>
 //   )
 // }
 
 // export default App
 
+//---------------------Notes----------------------
 
-
-//------------------Aplicación de prueba------------------------
-// const Hello = (props) => {
-//   console.log(`${props.name} added with Home component`)
-//   return(
-//     <div>
-//       <p>Hello, {props.name}, your age is {props.age} old </p>
-//     </div>
-//   )
-// }
-
-// const Footer = () => {
-//   console.log('footer initialized')
-//   return(
-//     <div>
-//       Greetings, App created by <a href='https://github.com/HrHrM'>Johnny Bohorquez</a>
-//     </div>
-//   )
-// }
-
-// const App = () => {
+// const App = ({notes}) => {
   
-//   console.log('Initialized phos')
-//   const now = new Date()
-//   console.log(now)
-//   const a = 10
-//   const b = 20
-//   console.log(`The total is ${a + b}`)
-//   const name = 'Antarc'
-//   const age  = 40
-
-//   return (
-//     <>
-//       <p>
-//         Phosphophyllite, it is now {now.toDateString()} 
-//       </p>
-//       <p>
-//         {a} plus {b} is equal to {a + b}
-//       </p>
-//       <Hello name = 'Shinsha'  age = {26 + 10} />
-//       <Hello name = {name}     age = {age} />
-//       <Footer />
-//     </>
-
-//   )
-// }
-
-// export default App
-
-//------------------------Ejemplos de hooks---------------------------------------
-// const App = () => {
-
-//   const [ left, setLeft ]     = useState(0)
-//   const [ right, setRight ]   = useState(0)
-//   const [ allClicks, setAll ] = useState([])
-
-//   const handleLeft  = () => { 
-//     setLeft(left + 1) 
-//     setAll(allClicks.concat('L'))
-//   }
-//   const handleRight = () => { 
-//     setRight(right + 1) 
-//     setAll(allClicks.concat('R'))
-//   }
-//   const handleZero  = () => { 
-//       setLeft(0)
-//       setRight(0)
-//       setAll([])
-//   }
-
-//   return (
-//     <div>
-//       {left}
-//       <Button handler = {handleLeft}  text = {'Left'} />
-//       <Button handler = {handleZero}  text = {'Zero'} />
-//       <Button handler = {handleRight} text = {'Right'} />
-//       {right}
-//       <History allClicks = {allClicks} />
-//     </div>
-
-//   )
-// }
-
-// export default App
-
-// const History = ({ allClicks }) => {
-//   if (allClicks.length === 0) {
+//   const mapped = notes.map(e => {
 //     return(
-//       <div>
-//         the App is used by pressing buttons
-//       </div>
+//       <Notes key={e.id} note = {e} />
 //     )
-//   }
-//   return (
+//   })
+
+//   return(
 //     <div>
-//       Button press history: {allClicks.join(' ')}
+//       <h1> Notes </h1>
+//       <ul>
+//         {mapped}
+//       </ul>
 //     </div>
 //   )
 // }
 
-// const Button = ({ handler, text }) => {
-//   return(
-//   <button onClick={handler}>
-//     {text}
-//   </button>
-//   )
-  
+// export default App
+
+// const Notes = ({ note }) => {
+//   return <li> {note.content} </li>
 // }
 
