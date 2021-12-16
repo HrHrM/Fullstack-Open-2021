@@ -6,7 +6,6 @@ const PersonForm = ({ addPerson, newName, setNewName, newNumber, setNewNumber })
     return(
         <>
             <form onSubmit = {addPerson} >
-                <div>
                     <table>
                         <tbody>
                             <tr>
@@ -18,8 +17,7 @@ const PersonForm = ({ addPerson, newName, setNewName, newNumber, setNewNumber })
                                 <td>  <input value = {newNumber} onChange={handleChange(setNewNumber)} /> </td>
                             </tr>
                         </tbody>
-                    </table>
-                </div>  
+                    </table> 
                 <div>
                     <button type="submit">add</button>
                 </div>

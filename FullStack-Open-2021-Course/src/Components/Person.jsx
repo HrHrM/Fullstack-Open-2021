@@ -6,8 +6,8 @@ const Person = ({name, number}) => {
         <table>
           <tbody>
             <tr>
-              <td> {name} </td>
-              <td> : {number} </td>
+              <td> {name}: </td>
+              <td> {number} </td>
             </tr>
           </tbody>
         </table>
