@@ -1,69 +1,103 @@
 import React, { useState } from 'react'
 import logo                from './logo.svg'
 import './App.css'
-import Notes               from './Components/Notes'
+import Title               from './Components/Title'
+import Filter              from './Components/Filter'
+import PersonForm          from './Components/PersonForm'
+import Numbers             from './Components/Numbers'
+
 
 const App = () => {
 
   const [ persons, setPersons ] = useState([
-    { name: 'Arto Hellas',     id: 0 },
-    { name: 'Phosphophyllite', id: 1 }
+    { 
+      id:     0,
+      name:   'Arto Hellas',
+      number: '04242424242',
+    },
+    { 
+      id:     1, 
+      name:   'Phosphophyllite',
+      number: '02121212121',
+     },
+     { 
+      id:     2, 
+      name:   'Cinnabar',
+      number: '02131313131',
+     },
+     { 
+      id:     3, 
+      name:   'Cairngorn',
+      number: '02141414141',
+     },
   ]) 
-  const [ newName, setNewName ] = useState('')
+  const [ newName, setNewName ]       = useState('')
+  const [ newNumber, setNewNumber  ]  = useState('')
+  const [ searchName, setSearchName ] = useState('')
+
+  const repeat = (name, number) =>{
+
+    let igual = false
+
+    persons.forEach(e => {
+      if (e.name === name || e.number === number || name.length === 0 || number.length === 0 ) {
+        igual = true
+      }
+    })
+    
+    return igual
+  }
 
   const addPerson = (event) => {
+
     event.preventDefault()
-    
-    if(!(persons.filter(e => e.name === newName || newName.length === 0 ).length > 0)) {
-      console.log('added new user', event.target)
-      const newPerson = {
-        name: newName,
-        id: persons.length + 1,
-      }
-      console.log(newPerson)
-      setPersons(persons.concat(newPerson))
-      setNewName('')
-    }else{
-      window.alert(`${newName} is already in the phonebook`)
-      setNewName('')
+
+    const newPerson = {
+      id:     persons.length + 1,
+      name:   newName,
+      number: newNumber,
     }
 
-  }
-  
-  const handlePerson = (event) => {
-    console.log(event.target.value)
-    setNewName(event.target.value)
-  }
+    const igual = repeat(newPerson.name, newPerson.number)
 
-  const personsMap = persons.map(e => {
-    return(
-      <Notes data = {e.name} key = {e.id} />
-    )
-  })
+      if(!igual) {
+        setPersons(persons => [...persons, newPerson])
+        console.log(newPerson)
+
+      }else{
+        window.alert('There is a problem with the registration, either the name/number already exists or one of them is empty')
+
+      }
+
+      setNewName('')
+      setNewNumber('')
+  }
 
   return (
     <div>
-      <h2>Phonebook</h2>
-      <form onSubmit = {addPerson} >
-        <div>
-          name: <input value    = {newName}
-                       onChange = {handlePerson}
-          />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
-      <h2>Numbers</h2>
+      <Title text = {'Phonebook'} />
+      <Title text = {'Search'} />
       <div>
-        {personsMap}
+        <Filter searchName = {searchName} setSearchName = {setSearchName} persons = {persons} />
       </div>
-      
+      <Title text = {'Add a new person'} />
+      <div>
+        <PersonForm addPerson    = {addPerson} 
+                    newName      = {newName}
+                    setNewName   = {setNewName}
+                    newNumber    = {newNumber}
+                    setNewNumber = {setNewNumber} />
+      </div>
+      <Title text = {'Numbers'} />
+      <div>
+        <Numbers persons={persons} />
+      </div>
     </div>
   )
 }
 
 export default App  
+
 
 
 //---------------------Notes----------------------
