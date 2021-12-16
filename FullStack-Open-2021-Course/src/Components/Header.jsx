@@ -2,6 +2,7 @@ import React from "react"
 
 const Header = ({ name }) => {
 
+    console.log('////////////////////////////////////////////////////////////////////////')
     console.log('Initialized header')
     console.log('Title:', name)
 
