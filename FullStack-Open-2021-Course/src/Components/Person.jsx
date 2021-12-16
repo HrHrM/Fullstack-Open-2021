@@ -1,13 +1,13 @@
 import React from "react";
 
-const Person = ({person}) => {
+const Person = ({name, number}) => {
     return(
       <>
         <table>
           <tbody>
             <tr>
-              <td> {person.name} </td>
-              <td> : {person.number} </td>
+              <td> {name} </td>
+              <td> : {number} </td>
             </tr>
           </tbody>
         </table>
