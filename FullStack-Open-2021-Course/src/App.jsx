@@ -6,22 +6,30 @@ import Notes               from './Components/Notes'
 const App = () => {
 
   const [ persons, setPersons ] = useState([
-    { name: 'Arto Hellas' },
-    { name: 'Phosphophyllite'}
+    { name: 'Arto Hellas',     id: 0 },
+    { name: 'Phosphophyllite', id: 1 }
   ]) 
   const [ newName, setNewName ] = useState('')
 
   const addPerson = (event) => {
     event.preventDefault()
-    console.log('added new user', event.target)
-
-    const newPerson = {
-      name: newName
+    
+    if(!(persons.filter(e => e.name === newName || newName.length === 0 ).length > 0)) {
+      console.log('added new user', event.target)
+      const newPerson = {
+        name: newName,
+        id: persons.length + 1,
+      }
+      console.log(newPerson)
+      setPersons(persons.concat(newPerson))
+      setNewName('')
+    }else{
+      window.alert(`${newName} is already in the phonebook`)
+      setNewName('')
     }
-    console.log(newPerson)
-    setPersons(persons.concat(newPerson))
-    setNewName('')
+
   }
+  
   const handlePerson = (event) => {
     console.log(event.target.value)
     setNewName(event.target.value)
@@ -29,7 +37,7 @@ const App = () => {
 
   const personsMap = persons.map(e => {
     return(
-      <Notes data = {e.name} key = {e.name} />
+      <Notes data = {e.name} key = {e.id} />
     )
   })
 
