@@ -5,10 +5,51 @@ import React, {
 import logo                from './logo.svg'
 import './App.css'
 import axios               from 'axios'
+import handleChange        from './Components/utils'
+import Country             from './Components/Country'
 
 const App = () => {
+  const [ countries, setCountries ]         = useState([])
+  const [ searchCountry, setSearchCountry ] = useState('')
+  const [ showCountry, setShowCountry ]     = useState(false)
+
+  const url = 'https://restcountries.com/v3.1/all'
+
+  useEffect(() => {
+    console.log('Effect taking place')
+    axios
+    .get(url)
+    .then(response => {
+      console.log('promise fulfilled')
+      setCountries(response.data)
+      
+    })
+  }, [])
+  // console.log('render', countries.length, 'countries')
+  // console.log(countries)
+
+  // const countryNames = countries.map(e => {
+  //   console.log(e.name.common)
+  //   return( <p key = {e.name.common} > {e.name.common} </p> )
+  // })  
+
+  const countryFilter = countries.filter(e => 
+    e.name.common === searchCountry)
+    .map(m => <Country key={m.name.common} country={m} />)
+    console.log('render', countries.length, 'countries')
+    console.log(countries)
 
 
+  return(
+    <div>
+      <p>
+        Find countries: <input value = {searchCountry}
+                               onChange = {setSearchCountry} />
+        {countryFilter}
+      </p>
+    </div>
+  )
+}
 export default App  
 
 
