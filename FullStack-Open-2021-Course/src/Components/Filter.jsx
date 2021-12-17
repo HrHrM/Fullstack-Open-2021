@@ -6,7 +6,7 @@ const Filter = ({ persons, searchName, setSearchName }) => {
 
     const search = persons.filter(person => 
         person.name.toLocaleLowerCase() === searchName.toLocaleLowerCase())
-        .map(m => <Person key = {m.id} person = {m}/> )
+        .map(m => <Person key = {m.id} persons = {m}/> )
     
     return(
         <>
