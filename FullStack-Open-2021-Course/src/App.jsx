@@ -2,51 +2,43 @@ import React, {
   useState,
   useEffect,
  }                         from 'react'
-import logo                from './logo.svg'
 import './App.css'
 import axios               from 'axios'
-import handleChange        from './Components/utils'
-import Country             from './Components/Country'
+import Search              from './Components/Search'
+import Result              from './Components/Result'
 
 const App = () => {
   const [ countries, setCountries ]         = useState([])
   const [ searchCountry, setSearchCountry ] = useState('')
-  const [ showCountry, setShowCountry ]     = useState(false)
+  const [ countryShow, setShow ]            = useState({})
 
-  const url = 'https://restcountries.com/v3.1/all'
+  const url  = `https://restcountries.com/v3.1/name/${searchCountry}`
+  const url2 = 'https://restcountries.com/v3.1/all'
 
   useEffect(() => {
-    console.log('Effect taking place')
-    axios
-    .get(url)
-    .then(response => {
-      console.log('promise fulfilled')
+    console.log('Effect taking countries to the state')
+    axios.get(url).then(response => {
+      console.log('fulfilled 1')
       setCountries(response.data)
-      
     })
-  }, [])
-  // console.log('render', countries.length, 'countries')
-  // console.log(countries)
+  }, [url])
 
-  // const countryNames = countries.map(e => {
-  //   console.log(e.name.common)
-  //   return( <p key = {e.name.common} > {e.name.common} </p> )
-  // })  
+  useEffect(() => {
+    console.log('Effect taking place into Show state')
+    let changeShow = {}
+    countries.forEach(e => changeShow[e.name] = false)
+    console.log('fulfilled 2')
+    setShow(changeShow)
+  }, [countries])
 
-  const countryFilter = countries.filter(e => 
-    e.name.common === searchCountry)
-    .map(m => <Country key={m.name.common} country={m} />)
-    console.log('render', countries.length, 'countries')
-    console.log(countries)
-
+  // const search = countries.filter(c => 
+  //   c.name.common === searchCountry)
+  //   .map(m => <Country key = {m.name.common} country = {m} />)
 
   return(
     <div>
-      <p>
-        Find countries: <input value = {searchCountry}
-                               onChange = {setSearchCountry} />
-        {countryFilter}
-      </p>
+      <Search searchCountry = {searchCountry} setSearchCountry = {setSearchCountry} />
+      <Result countries = {countries} setCountries = {setCountries} searchCountry = {searchCountry} countryShow = {countryShow} setShow = {setShow}  />
     </div>
   )
 }
