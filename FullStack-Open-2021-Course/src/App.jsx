@@ -15,6 +15,7 @@ const App = () => {
   const url  = `https://restcountries.com/v3.1/name/${searchCountry}`
   const url2 = 'https://restcountries.com/v3.1/all'
 
+
   useEffect(() => {
     console.log('Effect taking countries to the state')
     axios.get(url).then(response => {
