@@ -12,7 +12,7 @@ const Country = ({country, countryShow, setShow}) => {
     const [ windSpeed, setWindSpeed ]         = useState('')
     const [ windDirection, setWindDirection ] = useState('')
 
-    const api_key = process.env.WEATHER_API
+    // const api_key = process.env.WEATHER_API
     // const weather_api = `http://api.weatherstack.com/current?access_key=${api_key}&query=${country.capital}`
 
     const lang    = Object.values(country.languages).map(e => {
