@@ -1,25 +1,25 @@
 {
   "persons": [
-    { 
-      "id":     1,
-      "name":   "Arto Hellas",
+    {
+      "id": 1,
+      "name": "Arto Hellas",
       "number": "04242424242"
     },
-    { 
-      "id":     2, 
-      "name":   "Phosphophyllite",
+    {
+      "id": 2,
+      "name": "Phosphophyllite",
       "number": "02121212121"
-     },
-     { 
-      "id":     3, 
-      "name":   "Cinnabar",
+    },
+    {
+      "id": 3,
+      "name": "Cinnabar",
       "number": "02131313131"
-     },
-     { 
-      "id":     4, 
-      "name":   "Cairngorn",
+    },
+    {
+      "id": 4,
+      "name": "Cairngorn",
       "number": "02141414141"
-     }
+    }
   ],
   "notes": [
     {
@@ -39,6 +39,18 @@
       "content": "GET and POST are the most important methods of HTTP protocol",
       "date": "2019-05-30T19:20:14.298Z",
       "important": true
+    },
+    {
+      "content": "Phos",
+      "date": "2021-12-22T20:58:24.156Z",
+      "important": true,
+      "id": 4
+    },
+    {
+      "content": "Cinnabar",
+      "date": "2021-12-22T20:58:31.868Z",
+      "important": false,
+      "id": 5
     }
   ]
 }
