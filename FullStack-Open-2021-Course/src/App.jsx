@@ -3,46 +3,91 @@ import React, {
   useEffect,
  }                         from 'react'
 import './App.css'
+import Title               from './Components/Title'
+import Filter              from './Components/Filter'
+import PersonForm          from './Components/PersonForm'
+import Numbers             from './Components/Numbers'
 import axios               from 'axios'
-import Search              from './Components/Search'
-import Result              from './Components/Result'
 
 const App = () => {
-  const [ countries, setCountries ]         = useState([])
-  const [ searchCountry, setSearchCountry ] = useState('')
-  const [ countryShow, setShow ]            = useState({})
 
-  const url  = `https://restcountries.com/v3.1/name/${searchCountry}`
-  const url2 = 'https://restcountries.com/v3.1/all'
+  const [ persons, setPersons ]       = useState([]) 
+  const [ newName, setNewName ]       = useState('')
+  const [ newNumber, setNewNumber  ]  = useState('')
+  const [ searchName, setSearchName ] = useState('')
 
-
-  useEffect(() => {
-    console.log('Effect taking countries to the state')
-    axios.get(url).then(response => {
-      console.log('fulfilled 1')
-      setCountries(response.data)
+  useEffect(() =>{
+    console.log('Effect taking place')
+    axios
+    .get('http://localhost:3001/persons')
+    .then(response => {
+      console.log('promise fulfilled')
+      setPersons(response.data)
     })
-  }, [url])
+  }, [])
+  console.log('render', persons.length, 'persons')
 
-  useEffect(() => {
-    console.log('Effect taking place into Show state')
-    let changeShow = {}
-    countries.forEach(e => changeShow[e.name] = false)
-    console.log('fulfilled 2')
-    setShow(changeShow)
-  }, [countries])
+  const repeat = (name, number) =>{
 
-  // const search = countries.filter(c => 
-  //   c.name.common === searchCountry)
-  //   .map(m => <Country key = {m.name.common} country = {m} />)
+    let igual = false
 
-  return(
+    persons.forEach(e => {
+      if (e.name === name || e.number === number || name.length === 0 || number.length === 0 ) {
+        igual = true
+      }
+    })
+    
+    return igual
+  }
+
+  const addPerson = (event) => {
+
+    event.preventDefault()
+
+    const newPerson = {
+      id:     persons.length + 1,
+      name:   newName,
+      number: newNumber,
+    }
+
+    const igual = repeat(newPerson.name, newPerson.number)
+
+      if(!igual) {
+        setPersons(persons => [...persons, newPerson])
+        console.log(newPerson)
+
+      }else{
+        window.alert('There is a problem with the registration, either the name/number already exists or one of them is empty')
+
+      }
+
+      setNewName('')
+      setNewNumber('')
+  }
+
+  return (
     <div>
-      <Search searchCountry = {searchCountry} setSearchCountry = {setSearchCountry} />
-      <Result countries = {countries} setCountries = {setCountries} searchCountry = {searchCountry} countryShow = {countryShow} setShow = {setShow}  />
+      <Title text = {'Phonebook'} />
+      <Title text = {'Search'} />
+      <div>
+        <Filter searchName = {searchName} setSearchName = {setSearchName} persons = {persons} />
+      </div>
+      <Title text = {'Add a new person'} />
+      <div>
+        <PersonForm addPerson    = {addPerson} 
+                    newName      = {newName}
+                    setNewName   = {setNewName}
+                    newNumber    = {newNumber}
+                    setNewNumber = {setNewNumber} />
+      </div>
+      <Title text = {'Numbers'} />
+      <div>
+        <Numbers persons={persons} />
+      </div>
     </div>
   )
 }
+
 export default App  
 
 
