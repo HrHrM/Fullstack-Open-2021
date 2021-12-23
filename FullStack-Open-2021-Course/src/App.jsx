@@ -109,7 +109,7 @@ const App = () => {
       setNotes(response.data)
     })
   }, [])
-  console.log('render', notes.length, 'notes')
+  
   
   const addNote = (event) => {
     event.preventDefault()
@@ -127,6 +127,7 @@ const App = () => {
       console.log(response)
       setNotes(notes.concat(response.data))
       setNewNote('')
+      console.log('render', notes.length, 'notes')
     })
 
 
