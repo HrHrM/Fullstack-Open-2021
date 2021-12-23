@@ -41,7 +41,6 @@ const App = () => {
     event.preventDefault()
 
     const newPerson = {
-      id:     persons.length + 1,
       name:   newName,
       number: newNumber,
     }
@@ -80,7 +79,7 @@ const App = () => {
       </div>
       <Title text = {'Numbers'} />
       <div>
-        <Numbers persons={persons} />
+        <Numbers persons={persons} setPersons = {setPersons} />
       </div>
     </div>
   )
