@@ -8,6 +8,7 @@ import Filter              from './Components/Filter'
 import PersonForm          from './Components/PersonForm'
 import Numbers             from './Components/Numbers'
 import axios               from 'axios'
+import noteService         from './Services/notes'
 
 
 const App = () => {
@@ -18,13 +19,7 @@ const App = () => {
   const [ searchName, setSearchName ] = useState('')
 
   useEffect(() =>{
-    console.log('Effect taking place')
-    axios
-    .get('http://localhost:3001/persons')
-    .then(response => {
-      console.log('promise fulfilled')
-      setPersons(response.data)
-    })
+    noteService.getAll().then(initialPersons => setPersons(initialPersons))
   }, [])
   console.log('render', persons.length, 'persons')
 
@@ -54,8 +49,10 @@ const App = () => {
     const igual = repeat(newPerson.name, newPerson.number)
 
       if(!igual) {
-        setPersons(persons => [...persons, newPerson])
-        console.log(newPerson)
+        noteService.create(newPerson).then(returnedPerson => {
+          setPersons(persons.concat(returnedPerson))
+          console.log(newPerson)
+        })
 
       }else{
         window.alert('There is a problem with the registration, either the name/number already exists or one of them is empty')
