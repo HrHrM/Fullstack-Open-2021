@@ -8,7 +8,7 @@ import Filter              from './Components/Filter'
 import PersonForm          from './Components/PersonForm'
 import Numbers             from './Components/Numbers'
 import axios               from 'axios'
-import noteService         from './Services/notes'
+import Service         from './Services/notes'
 
 
 const App = () => {
@@ -19,7 +19,7 @@ const App = () => {
   const [ searchName, setSearchName ] = useState('')
 
   useEffect(() =>{
-    noteService.getAll().then(initialPersons => setPersons(initialPersons))
+    Service.getAll().then(initialPersons => setPersons(initialPersons))
   }, [])
   console.log('render', persons.length, 'persons')
 
@@ -48,7 +48,7 @@ const App = () => {
     const igual = repeat(newPerson.name, newPerson.number)
 
       if(!igual) {
-        noteService.create(newPerson).then(returnedPerson => {
+        Service.create(newPerson).then(returnedPerson => {
           setPersons(persons.concat(returnedPerson))
           console.log(newPerson)
         })
@@ -79,7 +79,7 @@ const App = () => {
       </div>
       <Title text = {'Numbers'} />
       <div>
-        <Numbers persons={persons} setPersons = {setPersons} />
+        <Numbers persons={persons} setPersons = {setPersons}/>
       </div>
     </div>
   )

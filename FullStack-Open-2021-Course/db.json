@@ -1,39 +1,9 @@
 {
   "persons": [
     {
-      "id": 1,
-      "name": "Arto Hellas",
-      "number": "04242424242"
-    },
-    {
-      "id": 2,
-      "name": "Phosphophyllite",
-      "number": "02121212121"
-    },
-    {
-      "id": 3,
-      "name": "Cinnabar",
-      "number": "02131313131"
-    },
-    {
-      "id": 4,
-      "name": "Cairngorn",
-      "number": "02141414141"
-    },
-    {
-      "id": 5,
-      "name": "Phos",
-      "number": "556"
-    },
-    {
-      "id": 6,
-      "name": "Arto",
-      "number": "4856"
-    },
-    {
-      "name": "Jaime",
-      "number": "456",
-      "id": 7
+      "name": "Johnny Armando",
+      "number": "123",
+      "id": 1
     }
   ],
   "notes": [

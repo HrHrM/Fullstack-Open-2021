@@ -14,14 +14,14 @@ const create = (newPerson) => {
     return request.then(response => response.data)
 }
 
-const delete_ = (id) => {
-    const request = axios.delete(baseUrl, id)
+const erase = (id) => {
+    const request = axios.delete(`${baseUrl}/${id}`)
     return request.then(response => response.data)
 }
 
 
 
-export default { getAll, create, delete_ }
+export default { getAll, create, erase }
 
 
 //---------------------Notes----------------------
