@@ -1,9 +1,14 @@
 {
   "persons": [
     {
-      "name": "Johnny Armando",
-      "number": "123",
+      "name": "Phos",
+      "number": "456",
       "id": 1
+    },
+    {
+      "name": "Yoni ",
+      "number": "569",
+      "id": 2
     }
   ],
   "notes": [

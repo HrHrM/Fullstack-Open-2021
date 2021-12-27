@@ -7,15 +7,14 @@ import Title               from './Components/Title'
 import Filter              from './Components/Filter'
 import PersonForm          from './Components/PersonForm'
 import Numbers             from './Components/Numbers'
-import axios               from 'axios'
-import Service         from './Services/notes'
+import Service             from './Services/notes'
 
 
 const App = () => {
 
   const [ persons, setPersons ]       = useState([]) 
   const [ newName, setNewName ]       = useState('')
-  const [ newNumber, setNewNumber  ]  = useState('')
+  const [ newNumber, setNewNumber ]   = useState('')
   const [ searchName, setSearchName ] = useState('')
 
   useEffect(() =>{
@@ -23,44 +22,74 @@ const App = () => {
   }, [])
   console.log('render', persons.length, 'persons')
 
-  const repeat = (name, number) =>{
+  // const repeat = (name, number) =>{
 
-    let igual = false
+  //   let igual = false
 
-    persons.forEach(e => {
-      if (e.name === name || e.number === number || name.length === 0 || number.length === 0 ) {
-        igual = true
-      }
-    })
+  //   persons.forEach(e => {
+  //     if (e.name === name || e.number === number || name.length === 0 || number.length === 0 ) {
+  //       igual  = true
+  //     }
+  //   })
     
-    return igual
-  }
+  //   return {igual, idCopy}
+  // }
+
+  // const addPerson = (event) => {
+
+  //   event.preventDefault()
+
+  //   const newPerson = {
+  //     name:   newName,
+  //     number: newNumber,
+  //   }
+
+  //   const igual  = repeat(newPerson.name, newPerson.number)
+
+  //     if(!igual) {
+  //       Service.create(newPerson).then(returnedPerson => {
+  //         setPersons(persons.concat(returnedPerson))
+  //         console.log(newPerson)
+  //       })
+
+  //     } else {
+  //       const message = `${newName} is already on the phonebook, replace the old number with the new one?`
+  //       if(window.confirm(message)) {
+  //         Service.update(idCopy, newPerson).then(() => {
+  //           Service.getAll().then(data => setPersons(data))
+  //           window.alert('Number updated')
+  //         })
+  //       }
+
+  //     }
+  //   setNewNumber('')
+  //   setNewName('')
+  // }
 
   const addPerson = (event) => {
-
     event.preventDefault()
 
-    const newPerson = {
-      name:   newName,
-      number: newNumber,
-    }
-
-    const igual = repeat(newPerson.name, newPerson.number)
-
-      if(!igual) {
-        Service.create(newPerson).then(returnedPerson => {
-          setPersons(persons.concat(returnedPerson))
-          console.log(newPerson)
-        })
-
-      }else{
-        window.alert('There is a problem with the registration, either the name/number already exists or one of them is empty')
-
+    Service.query(newName).then(person => {
+      const newPerson = {
+        name:   newName,
+        number: newNumber, 
+      }
+      
+      if(person) {
+        const message = `Testing 1??`
+        // if(window.confirm(message)) {
+        //   Service.update(person.id, newPerson).then(() => {
+        //     Service.getAll().then(data => setPersons(data))
+        //   }).catch(error => {
+        //     console.log(error)
+        //   })
+        // }
+        console.log('Testing')
       }
 
-      setNewName('')
-      setNewNumber('')
+    })
   }
+
 
   return (
     <div>

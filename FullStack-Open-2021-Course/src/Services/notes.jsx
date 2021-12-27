@@ -9,6 +9,11 @@ const getAll = () => {
     return request.then(response => response.data)
 }
 
+const query = (name) => {
+    const request = axios.get(`${baseUrl}/query/${name}`)
+    return request.then(response => response.data)
+  }
+
 const create = (newPerson) => {
     const request = axios.post(baseUrl, newPerson)
     return request.then(response => response.data)
@@ -19,9 +24,12 @@ const erase = (id) => {
     return request.then(response => response.data)
 }
 
+const update = (id, newPerson) => {
+    const request = axios.put(`${baseUrl}/${id}`, newPerson)
+    return request.then(response => response.data)
+}
 
-
-export default { getAll, create, erase }
+export default { getAll, create, erase, update, query }
 
 
 //---------------------Notes----------------------
